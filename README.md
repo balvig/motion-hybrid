@@ -1,5 +1,14 @@
 # Motionrails
 
+rake pod:install
+
+
+## Basic navigation
+
+## Bridge
+
+## Custom routes
+
 TODO: Write a gem description
 
 ## Installation

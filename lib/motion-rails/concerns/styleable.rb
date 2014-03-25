@@ -3,7 +3,7 @@ module MotionRails
 
     def on_init
       super
-      set_style_class
+      set_style_class if using_freestyle_css?
       set_webview_options
       remove_back_button_label
       self.title = nil
@@ -18,6 +18,10 @@ module MotionRails
     def set_webview_options
       set_attributes webview, keyboard_display_requires_user_action: false, suppresses_incremental_rendering: true, background_color: UIColor.whiteColor
       set_attributes webview.scrollView, deceleration_rate: 0.999
+    end
+
+    def using_freestyle_css?
+      defined?(PixateFreestyleConfig)
     end
 
     def set_style_class

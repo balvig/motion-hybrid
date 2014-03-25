@@ -1,0 +1,16 @@
+PODS:
+  - CRToast (0.0.6)
+  - MBProgressHUD (0.8)
+  - SpinKit (1.0.1)
+
+DEPENDENCIES:
+  - CRToast
+  - MBProgressHUD
+  - SpinKit
+
+SPEC CHECKSUMS:
+  CRToast: 7def6720179d7c861b06222a82a4ad4bdfe476f0
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+  SpinKit: c7490233be81d8daf41da05dc463351423658aad
+
+COCOAPODS: 0.29.0

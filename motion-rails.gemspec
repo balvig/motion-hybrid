@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = MotionRails::VERSION
   spec.authors       = ["Jens Balvig"]
   spec.email         = ["jens@balvig.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Giving Rails som iOS love.}
+  spec.description   = %q{Giving Rails som iOS love.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -18,6 +18,16 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency 'bubble-wrap'
+  spec.add_dependency 'dish'
+  spec.add_dependency 'motion-cocoapods'
+  spec.add_dependency 'motion-require'
+  spec.add_dependency 'motion-support'
+  spec.add_dependency 'ProMotion'
+  spec.add_dependency 'sugarcube'
+
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency 'motion-redgreen'
+  spec.add_development_dependency 'webstub'
 end
