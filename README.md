@@ -22,6 +22,27 @@ $ rake pod:install
 
 ## Usage
 
+```ruby
+# app/screens/base_screen.rb
+class BaseScreen < MotionRails::Screen
+  self.root_url = 'http://github.com'
+end
+
+# app/app_delegate.rb
+class AppDelegate < PM::Delegate
+  def on_load(app, options)
+    BaseScreen.sync_sessions do
+      @screen_1 = BaseScreen.new(nav_bar: true, path: '/balvig')
+      @screen_2 = BaseScreen.new(nav_bar: true, path: '/rubymotion')
+
+      @screen_1.set_tab_bar_item title: 'Balvig', system_icon: :more
+      @screen_2.set_tab_bar_item title: 'Rubymotion', system_icon: :favorites
+
+      open_tab_bar @screen_1, @screen_2
+    end
+  end
+end
+```
 
 ### Basic navigation
 
