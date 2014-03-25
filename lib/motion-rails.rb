@@ -1,4 +1,3 @@
-require 'motion/project/template/ios'
 require 'bubble-wrap'
 require 'dish/motion'
 require 'motion-cocoapods'

@@ -1,4 +1,5 @@
 $:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/ios'
 require 'motion-rails'
 require 'bundler'
 Bundler.require(:development)
