@@ -21,7 +21,7 @@ module MotionRails
     end
 
     def using_freestyle_css?
-      defined?(PixateFreestyleConfig)
+      view.respond_to?(:styleClass)
     end
 
     def set_style_class
