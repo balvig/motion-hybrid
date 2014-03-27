@@ -49,17 +49,19 @@ end
 By default, all GET-links are pushed onto the navigation controller stack.
 
 ```html
+<!-- index.html -->
 <a href='index_2.html'>Page 2</a>
+
+<!-- index_2.html -->
+<p>This is page 2</p>
 ```
 
-results in this:
-
-![Basic links](https://dl.dropboxusercontent.com/u/3032793/screenshots/get.gif)
+<img src='https://dl.dropboxusercontent.com/u/3032793/screenshots/get.gif' width='200px' />
 
 ### Modals
 
 Links with anchor `#modal` will be opened in a modal window.
-Links _within_ a modal linking to the url of the page that created the modal will automatically close the modal.
+Links _within_ a modal linking to the url of the page that created it will automatically close the modal.
 
 ```html
 <!-- index.html -->
@@ -69,8 +71,7 @@ Links _within_ a modal linking to the url of the page that created the modal wil
 <a href='index.html'>This will close the modal</a>
 ```
 
-![Basic links](https://dl.dropboxusercontent.com/u/3032793/screenshots/modal.gif)
-
+<img src='https://dl.dropboxusercontent.com/u/3032793/screenshots/modal.gif' width='200px' />
 
 ### Inline
 
