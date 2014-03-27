@@ -1,15 +1,32 @@
 PODS:
-  - CRToast (0.0.6)
+  - CRToast (0.0.5)
+  - FontAwesomeKit (2.1.5):
+    - FontAwesomeKit/Core
+    - FontAwesomeKit/FontAwesome
+    - FontAwesomeKit/FoundationIcons
+    - FontAwesomeKit/IonIcons
+    - FontAwesomeKit/Zocial
+  - FontAwesomeKit/Core (2.1.5)
+  - FontAwesomeKit/FontAwesome (2.1.5):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.1.5):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.1.5):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.1.5):
+    - FontAwesomeKit/Core
   - MBProgressHUD (0.8)
   - SpinKit (1.0.1)
 
 DEPENDENCIES:
-  - CRToast
+  - CRToast (< 0.0.6)
+  - FontAwesomeKit
   - MBProgressHUD
   - SpinKit
 
 SPEC CHECKSUMS:
-  CRToast: 7def6720179d7c861b06222a82a4ad4bdfe476f0
+  CRToast: 5be332fb9f4bcfd3023b6f10324ed9738c35cb96
+  FontAwesomeKit: 7d935e100337d503bdaefde2ea16be740b81ed13
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   SpinKit: c7490233be81d8daf41da05dc463351423658aad
 

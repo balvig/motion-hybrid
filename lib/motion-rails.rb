@@ -11,16 +11,9 @@ Motion::Require.all(Dir.glob(File.expand_path('../motion-rails/**/*.rb', __FILE_
 
 Motion::Project::App.setup do |app|
   app.pods do
+    pod 'CRToast', '<0.0.6'
+    pod 'FontAwesomeKit'
     pod 'MBProgressHUD'
     pod 'SpinKit'
-    pod 'CRToast'
   end
 end
-
-#if defined?(Motion::Project::Config)
-  #require 'motion-require'
-  #Motion::Require.all(Dir.glob(File.expand_path('../motion-rails/**/*.rb', __FILE__)))
-#else
-  #raise 'add rails stuff here?'
-#end
-
