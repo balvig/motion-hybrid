@@ -108,6 +108,6 @@ All markup is contained within a div with id `motion-rails-bridge`
 ```
 
 
-### Custom routes
+## Custom routes
 
 TODO: Write usage instructions here
