@@ -77,9 +77,9 @@ Links _within_ a modal linking to the url of the page that created it will autom
 
 Links with anchor `#self` will open the new url within the current view without pushing a new view on to the stack:
 
-### POST/PATCH/DELETE
+### Non-GET requests
 
-Any non-GET requests (forms etc) will display the result within the current view, and automatically refresh all other views so that all pages are up to date when changing something
+Any non-GET requests (form posts etc) will display the result within the current view and also automatically refresh all other views so that pages are up to date.
 
 ## The Bridge
 
