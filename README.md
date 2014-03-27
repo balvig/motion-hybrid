@@ -1,13 +1,11 @@
 # motion-rails
 
-
-
-TODO: Write a gem description
+motion-rails to browse 
 
 ## Installation
 
 
-Add to Gemfile:
+Add to your rubymotion project's Gemfile:
 
 ```ruby
   gem 'motion-rails'
@@ -32,12 +30,8 @@ end
 class AppDelegate < PM::Delegate
   def on_load(app, options)
     BaseScreen.sync_sessions do
-      @screen_1 = BaseScreen.new(nav_bar: true, path: '/balvig')
-      @screen_2 = BaseScreen.new(nav_bar: true, path: '/rubymotion')
-
-      @screen_1.set_tab_bar_item title: 'Balvig', system_icon: :more
-      @screen_2.set_tab_bar_item title: 'Rubymotion', system_icon: :favorites
-
+      @screen_1 = BaseScreen.new(nav_bar: true, path: '/balvig', tab_bar: { title: 'Balvig', icon: :users })
+      @screen_2 = BaseScreen.new(nav_bar: true, path: '/rubymotion', tab-bar: { title: 'Rubymotion', icon: :gear })
       open_tab_bar @screen_1, @screen_2
     end
   end
@@ -47,6 +41,17 @@ end
 ### Basic navigation
 
 ### Bridge
+
+The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to customize parts of the native app
+
+#### Title/subtitles
+
+```html
+<div id='motion-rails-bridge'>
+  <h1>This is the title</h1>
+  <h2>This is a subtitle</h2>
+</div>
+```
 
 ### Custom routes
 
