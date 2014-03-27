@@ -18,7 +18,7 @@ $ bundle
 $ rake pod:install
 ```
 
-## Usage
+## Basic Usage
 
 Create a screen that inherits from `MotionRails::Screen` and set the base url of your web app:
 
@@ -44,9 +44,7 @@ class AppDelegate < PM::Delegate
 end
 ```
 
-### Basic navigation
-
-#### Links
+### Navigation
 
 By default, all GET-links are pushed onto the navigation controller stack.
 
@@ -58,7 +56,7 @@ results in this:
 
 ![Basic links](https://dl.dropboxusercontent.com/u/3032793/screenshots/get.gif)
 
-#### Modals
+### Modals
 
 Links with anchor `#modal` will be opened in a modal window.
 Links _within_ a modal linking to the url of the page that created the modal will automatically close the modal.
@@ -74,22 +72,21 @@ Links _within_ a modal linking to the url of the page that created the modal wil
 ![Basic links](https://dl.dropboxusercontent.com/u/3032793/screenshots/modal.gif)
 
 
-
-#### Inline
+### Inline
 
 Links with anchor `#self` will open the new url within the current view without pushing a new view on to the stack:
 
-#### POST/PATCH/DELETE
+### POST/PATCH/DELETE
 
 Any non-GET requests (forms etc) will display the result within the current view, and automatically refresh all other views so that all pages are up to date when changing something
 
-### Bridge
+## The Bridge
 
 The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to control pars of the native app. 
 
 All markup is contained within a div with id `motion-rails-bridge`
 
-#### Title/subtitles
+### Title/subtitles
 
 ```html
 <div id='motion-rails-bridge'>
@@ -98,7 +95,7 @@ All markup is contained within a div with id `motion-rails-bridge`
 </div>
 ```
 
-#### Alerts
+### Alerts
 
 ```html
 <div id='motion-rails-bridge'>
