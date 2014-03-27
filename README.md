@@ -1,6 +1,6 @@
 # motion-rails
 
-motion-rails takes your existing web app and views and wraps it in a native iOS interface 
+motion-rails takes your existing web app and views and wraps them in a snappy native iOS interface 
 
 ## Installation
 
