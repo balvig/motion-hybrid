@@ -42,7 +42,9 @@ end
 
 ### Bridge
 
-The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to customize parts of the native app
+The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to control pars of the native app. 
+
+All markup is contained within a div with id `motion-rails-bridge`
 
 #### Title/subtitles
 
@@ -52,6 +54,18 @@ The bridge is a small javascript connection between the web app and native app t
   <h2>This is a subtitle</h2>
 </div>
 ```
+
+#### Alerts
+
+```html
+<div id='motion-rails-bridge'>
+  <div class='flash'>
+    <h3>Congratulations!</h3>
+    <p>You completed level 2</p>
+  </div>
+</div>
+```
+
 
 ### Custom routes
 
