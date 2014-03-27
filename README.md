@@ -107,6 +107,8 @@ All markup is contained within a div with id `motion-rails-bridge`
 </div>
 ```
 
+### Navbar items
+
 
 ## Custom routes
 
