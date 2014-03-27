@@ -1,3 +1,7 @@
 #motion_rails_bridge {
   display: none;
 }
+
+.content-padded {
+  padding: 10px;
+}
