@@ -20,12 +20,18 @@ $ rake pod:install
 
 ## Usage
 
+Create a screen that inherits from `MotionRails::Screen` and set the base url of your web app:
+
 ```ruby
 # app/screens/base_screen.rb
 class BaseScreen < MotionRails::Screen
   self.root_url = 'http://github.com'
 end
+```
 
+Create one or more screens and set their paths:
+
+```ruby
 # app/app_delegate.rb
 class AppDelegate < PM::Delegate
   def on_load(app, options)
@@ -42,13 +48,32 @@ end
 
 #### Links
 
-All
+By default, all GET-links are pushed onto the navigation controller stack.
+
+```html
+<a href='index_2.html'>Page 2</a>
+```
+
+results in this:
+
+![Basic links](https://dl.dropboxusercontent.com/u/3032793/screenshots/get.gif)
 
 #### Modals
 
-Links with anchor `#modal` will be open in a modal window:
+Links with anchor `#modal` will be opened in a modal window.
+Links _within_ a modal linking to the url of the page that created the modal will automatically close the modal.
 
-Links within a modal linking to the page that created the modal will automatically close the modal:
+```html
+<!-- index.html -->
+<a href='modal.html#modal'>Page 2</a>
+
+<!-- modal.html -->
+<a href='index.html'>This will close the modal</a>
+```
+
+![Basic links](https://dl.dropboxusercontent.com/u/3032793/screenshots/modal.gif)
+
+
 
 #### Inline
 
