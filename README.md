@@ -40,6 +40,24 @@ end
 
 ### Basic navigation
 
+#### Links
+
+All
+
+#### Modals
+
+Links with anchor `#modal` will be open in a modal window:
+
+Links within a modal linking to the page that created the modal will automatically close the modal:
+
+#### Inline
+
+Links with anchor `#self` will open the new url within the current view without pushing a new view on to the stack:
+
+#### POST/PATCH/DELETE
+
+Any non-GET requests (forms etc) will display the result within the current view, and automatically refresh all other views so that all pages are up to date when changing something
+
 ### Bridge
 
 The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to control pars of the native app. 
@@ -70,11 +88,3 @@ All markup is contained within a div with id `motion-rails-bridge`
 ### Custom routes
 
 TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( http://github.com/balvig/motion-rails/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
