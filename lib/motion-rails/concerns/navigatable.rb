@@ -33,19 +33,6 @@ module MotionRails
       @url
     end
 
-    def on_request(nsurlrequest, type)
-      request = Request.new(nsurlrequest, type)
-      return dom_loaded && false if request.url == 'motionrails://ready'
-      @needs_reload = true if request.http_method != 'GET'
-
-      if router.process(request)
-        false
-      else
-        PM.logger.info("#{self} #{request.http_method} #{request.url}")
-        true
-      end
-    end
-
     def load_started
       start_transitions
     end
@@ -74,14 +61,35 @@ module MotionRails
       load_initial_url
     end
 
+    def on_request(nsurlrequest, type)
+      process_request Request.new(nsurlrequest, type)
+    end
+
+    def navigate(new_path)
+      return if path == new_path
+      process_request Request.new(self.class.request_for(new_path), UIWebViewNavigationTypeLinkClicked)
+    end
+
+    private
+
+    def process_request(request)
+      return dom_loaded && false if request.url == 'motionrails://ready'
+      @needs_reload = true if request.http_method != 'GET'
+
+      if router.process(request)
+        false
+      else
+        PM.logger.info("#{self} #{request.http_method} #{request.url}")
+        true
+      end
+    end
+
     def push(url, options = {})
       view_options = options.slice!(:hide_tab_bar)
       options[:modal] = view_options[:modal]
       view_options.reverse_merge!(url: url, modal: modal?, transition_style: transition_style)
       open self.class.new(view_options), options
     end
-
-    private
 
     def load_initial_url
       self.path = self.class.path_for(@initial_url)
@@ -106,6 +114,10 @@ module MotionRails
 
       def url_for(path)
         "#{root_url}#{path}"
+      end
+
+      def request_for(path)
+        NSURLRequest.requestWithURL NSURL.URLWithString(url_for(path))
       end
 
       def path_for(url)
