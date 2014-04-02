@@ -3,75 +3,60 @@ describe 'MotionRails::BasicRoutes' do
   extend WebStub::SpecHelpers
   tests MotionRails::Screen
 
-  before do
-    disable_network_access!
-  end
-
   after do
     @screen = nil
-    enable_network_access!
   end
 
   def controller
-    MotionRails::Screen.root_url = 'http://github.com'
-    @screen ||= MotionRails::Screen.new(path: '/', nav_bar: true)
+    MotionRails::Screen.root_url = NSURL.fileURLWithPath(NSBundle.mainBundle.resourcePath + '/web').to_s
+    @screen ||= MotionRails::Screen.new(path: '/index.html', nav_bar: true)
     @screen.navigationController
   end
 
-  it "basic GET link" do
-    stub_request(:get, "http://github.com/").to_return(body: '<a href="/page_2" id="link">To page 2</a>')
-    stub_request(:get, "http://github.com/page_2").to_return(body: 'This is page 2')
-
+  it "pushes a basic GET link" do
     wait 0.6 do
-      @screen.html.include?('To page 2').should == true
-      @screen.evaluate('document.getElementById("link").click();')
+      view_should_have_content('Page 2')
+      click_link('Page 2')
       wait 0.6 do
         @screen.presentedViewController.nil?.should == true
         @screen.navigationController.viewControllers.count.should == 2
-        @screen.navigationController.topViewController.html.include?('This is page 2').should == true
+        view_should_have_content('This is page 2')
       end
     end
   end
 
-  it "inline #self link" do
-    stub_request(:get, "http://github.com/").to_return(body: '<a href="/page_2#self" id="link">To page 2</a>')
-    stub_request(:get, "http://github.com/page_2").to_return(body: 'This is page 2')
+  it "loads #self link inline" do
+    @screen.path = '/index_2.html'
 
     wait 0.6 do
-      @screen.evaluate('document.getElementById("link").click();')
+      click_link 'Page with alert'
       wait 0.6 do
-        @screen.html.include?('This is page 2').should == true
         @screen.navigationController.viewControllers.count.should == 1
+        view_should_have_content('Congratulations!')
       end
     end
   end
 
-  it "modal #modal link" do
-    stub_request(:get, "http://github.com/").to_return(body: '<a href="/page_2#modal" id="link">To page 2</a>')
-    stub_request(:get, "http://github.com/page_2").to_return(body: 'This is page 2')
-
+  it "pops up #modal link" do
     wait 0.6 do
-      @screen.evaluate('document.getElementById("link").click();')
+      click_link 'Modal'
       wait 0.6 do
         @screen.navigationController.viewControllers.count.should == 1
-        @screen.presentedViewController.viewControllers.first.html.include?('This is page 2').should == true
+        @screen.presentedViewController.should.not.be.nil
+        view_should_have_content 'This will close the modal'
       end
     end
   end
 
-  it "going to url of presenter from modal closes the modal" do
-    stub_request(:get, "http://github.com/").to_return(body: '<a href="/modal#modal" id="link">To modal</a>')
-    stub_request(:get, "http://github.com/modal").to_return(body: '<a href="/" id="link">Close</a>')
-
+  it "closes modal when going to url of presenter" do
     wait 0.6 do
-      @screen.evaluate('document.getElementById("link").click();')
+      click_link 'Modal'
       wait 0.6 do
         @screen.navigationController.viewControllers.count.should == 1
-        @modal = @screen.presentedViewController.viewControllers.first
-        @modal.html.include?('Close').should == true
-        @modal.evaluate('document.getElementById("link").click();')
+        @screen.presentedViewController.should.not.be.nil
+        click_link 'This will close the modal'
         wait 0.6 do
-          @screen.presentedViewController.nil?.should == true
+          @screen.presentedViewController.should.be.nil
         end
       end
     end
@@ -90,5 +75,17 @@ describe 'MotionRails::BasicRoutes' do
     #end
   #end
   #
+  #
+  def current_view
+    top_view = @screen.navigationController.topViewController
+    top_view.presentedViewController.nil? ? top_view : top_view.presentedViewController.viewControllers.last
+  end
 
+  def click_link(text)
+    current_view.evaluate("$('a:contains(\"#{text}\")').get(0).click();")
+  end
+
+  def view_should_have_content(text)
+    current_view.html.include?(text).should.be.true
+  end
 end
