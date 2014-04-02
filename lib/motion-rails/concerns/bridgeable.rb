@@ -17,8 +17,11 @@ module MotionRails
       title.blank? && navigationItem.titleView.blank?
     end
 
-    def dom_loaded
+    def load_bridge
       self.bridge = Bridge.new(self)
+    end
+
+    def dom_loaded
       set_titles if transition_finished?
       set_buttons
       set_refresher

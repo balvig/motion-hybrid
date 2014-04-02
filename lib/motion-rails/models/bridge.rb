@@ -1,7 +1,11 @@
 module MotionRails
   class Bridge
+    PATH = NSBundle.mainBundle.resourcePath + '/jquery.motion-rails.js'
+    JS_LIB = File.open(PATH).read
+
     def initialize(screen)
       @screen = screen
+      @screen.evaluate(JS_LIB)
     end
 
     def click(target)
@@ -20,7 +24,7 @@ module MotionRails
     end
 
     def bridge_json
-      js_api('getParams()')
+      js_api('getParams()').presence || '{}'
     end
 
     def method_missing(method)

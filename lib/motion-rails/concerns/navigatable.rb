@@ -39,6 +39,7 @@ module MotionRails
 
     def load_finished
       @url = current_url
+      load_bridge
       reload_dependents if needs_reload?
       end_transitions
     end

@@ -24,9 +24,7 @@ class window.MotionRails
     target = target.children() if childIndex
     target.get(childIndex || 0).click()
 
-jQuery ->
-  agent = window.navigator.userAgent
-  if agent.indexOf('iPhone') > 0 && agent.indexOf('Safari') < 0
-    document.location.href = 'motionrails://ready'
-  else
-    $('body').addClass('motion_rails_dev')
+if document.readyState == 'complete'
+  document.location.href = 'motionrails://ready'
+else
+  jQuery -> document.location.href = 'motionrails://ready'
