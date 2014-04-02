@@ -122,6 +122,7 @@ module MotionRails
       end
 
       def path_for(url)
+        return if url.blank?
         NSURL.URLWithString(url).path
       end
 
