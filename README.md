@@ -8,7 +8,7 @@ motion-hybrid takes your existing web app and views and wraps them in a snappy n
 Add to your rubymotion project's Gemfile:
 
 ```ruby
-  gem 'motion-hybrid', github: 'balvig/motion-hybrid'
+gem 'motion-hybrid'
 ```
 
 Run bundle and install required cocoapods:
