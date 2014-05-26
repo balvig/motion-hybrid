@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = MotionHybrid::VERSION
   spec.authors       = ["Jens Balvig"]
   spec.email         = ["jens@balvig.com"]
-  spec.summary       = %q{Giving webviews som iOS love.}
-  spec.description   = %q{Giving webviews som iOS love.}
-  spec.homepage      = ""
+  spec.summary       = %q{Native iOS framework for making hybrid apps}
+  spec.description   = %q{Native iOS framework for making hybrid apps}
+  spec.homepage      = "https://github.com/balvig/motion-hybrid"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
