@@ -1,3 +1,3 @@
-module MotionRails
+module MotionHybrid
   VERSION = "0.0.1"
 end

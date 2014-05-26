@@ -1,6 +1,6 @@
-# motion-rails
+# motion-hybrid
 
-motion-rails takes your existing web app and views and wraps them in a snappy native iOS interface 
+motion-hybrid takes your existing web app and views and wraps them in a snappy native iOS interface
 
 ## Installation
 
@@ -8,7 +8,7 @@ motion-rails takes your existing web app and views and wraps them in a snappy na
 Add to your rubymotion project's Gemfile:
 
 ```ruby
-  gem 'motion-rails'
+  gem 'motion-hybrid'
 ```
 
 Run bundle and install required cocoapods:
@@ -20,11 +20,11 @@ $ rake pod:install
 
 ## Basic Usage
 
-Create a screen that inherits from `MotionRails::Screen` and set the base url of your web app:
+Create a screen that inherits from `MotionHybrid::Screen` and set the base url of your web app:
 
 ```ruby
 # app/screens/base_screen.rb
-class BaseScreen < MotionRails::Screen
+class BaseScreen < MotionHybrid::Screen
   self.root_url = 'http://github.com'
 end
 ```
@@ -83,14 +83,14 @@ Any non-GET requests (form posts etc) will display the result within the current
 
 ## The Bridge
 
-The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to control pars of the native app. 
+The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to control pars of the native app.
 
-All markup is contained within a div with id `motion-rails-bridge`
+All markup is contained within a div with id `motion-hybrid-bridge`
 
 ### Title/subtitles
 
 ```html
-<div id='motion-rails-bridge'>
+<div id='motion-hybrid-bridge'>
   <h1>This is the title</h1>
   <h2>This is a subtitle</h2>
 </div>
@@ -99,7 +99,7 @@ All markup is contained within a div with id `motion-rails-bridge`
 ### Alerts
 
 ```html
-<div id='motion-rails-bridge'>
+<div id='motion-hybrid-bridge'>
   <div class='flash'>
     <h3>Congratulations!</h3>
     <p>You completed level 2</p>

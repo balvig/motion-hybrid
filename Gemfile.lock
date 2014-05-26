@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    motion-rails (0.0.1)
+    motion-hybrid (0.0.1)
       ProMotion
       bubble-wrap
       dish
@@ -70,7 +70,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.5)
-  motion-rails!
+  motion-hybrid!
   motion-redgreen
   rake
   webstub

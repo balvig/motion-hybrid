@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   module BasicRoutes
     extend MotionSupport::Concern
 

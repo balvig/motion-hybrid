@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'motion-rails/version'
+require 'motion-hybrid/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "motion-rails"
-  spec.version       = MotionRails::VERSION
+  spec.name          = "motion-hybrid"
+  spec.version       = MotionHybrid::VERSION
   spec.authors       = ["Jens Balvig"]
   spec.email         = ["jens@balvig.com"]
-  spec.summary       = %q{Giving Rails som iOS love.}
-  spec.description   = %q{Giving Rails som iOS love.}
+  spec.summary       = %q{Giving webviews som iOS love.}
+  spec.description   = %q{Giving webviews som iOS love.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

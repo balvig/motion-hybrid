@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   class Route
     attr_accessor :block
 

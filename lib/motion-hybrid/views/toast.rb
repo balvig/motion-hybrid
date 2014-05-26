@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   class Toast
     TEXT_COLOR = '#3c763d'.to_color
     BACKGROUND_COLOR = '#dff0d8'.to_color

@@ -1,15 +1,14 @@
-describe 'MotionRails::BasicRoutes' do
+describe 'MotionHybrid::BasicRoutes' do
 
-  extend WebStub::SpecHelpers
-  tests MotionRails::Screen
+  tests MotionHybrid::Screen
 
   after do
     @screen = nil
   end
 
   def controller
-    MotionRails::Screen.root_url = NSURL.fileURLWithPath(NSBundle.mainBundle.resourcePath + '/web').to_s
-    @screen ||= MotionRails::Screen.new(path: '/index.html', nav_bar: true)
+    MotionHybrid::Screen.root_url = NSURL.fileURLWithPath(NSBundle.mainBundle.resourcePath + '/web').to_s
+    @screen ||= MotionHybrid::Screen.new(path: '/index.html', nav_bar: true)
     @screen.navigationController
   end
 

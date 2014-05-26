@@ -1,5 +1,4 @@
-
-module MotionRails
+module MotionHybrid
   module Syncable
     extend MotionSupport::Concern
 

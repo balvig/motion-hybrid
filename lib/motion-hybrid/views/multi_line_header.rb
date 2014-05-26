@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   class MultiLineHeader
     def self.new(title, subtitle)
       view = UIView.alloc.initWithFrame CGRectMake(0, 0, 200, 44)

@@ -1,6 +1,6 @@
-class window.MotionRails
+class window.MotionHybrid
   @getParams: ->
-    bridge = $('#motion_rails_bridge')
+    bridge = $('#motion_hybrid_bridge')
 
     params = {}
     params.title = bridge.find('h1').text()
@@ -25,6 +25,6 @@ class window.MotionRails
     target.get(childIndex || 0).click()
 
 if document.readyState == 'complete'
-  document.location.href = 'motionrails://ready'
+  document.location.href = 'motionhybrid://ready'
 else
-  jQuery -> document.location.href = 'motionrails://ready'
+  jQuery -> document.location.href = 'motionhybrid://ready'

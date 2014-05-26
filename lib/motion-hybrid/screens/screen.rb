@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   class Screen < PM::WebScreen
 
     include Bridgeable

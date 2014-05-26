@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   module Navigatable
     extend MotionSupport::Concern
 
@@ -74,7 +74,7 @@ module MotionRails
     private
 
     def process_request(request)
-      return dom_loaded && false if request.url == 'motionrails://ready'
+      return dom_loaded && false if request.url == 'motionhybrid://ready'
       @needs_reload = true if request.http_method != 'GET'
 
       if router.process(request)

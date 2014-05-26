@@ -1,6 +1,6 @@
-module MotionRails
+module MotionHybrid
   class Bridge
-    PATH = NSBundle.mainBundle.resourcePath + '/jquery.motion-rails.js'
+    PATH = NSBundle.mainBundle.resourcePath + '/jquery.motion-hybrid.js'
     JS_LIB = File.open(PATH).read
 
     def initialize(screen)
@@ -41,7 +41,7 @@ module MotionRails
     end
 
     def js_api(command)
-      @screen.evaluate("MotionRails.#{command};").to_s
+      @screen.evaluate("MotionHybrid.#{command};").to_s
     end
 
   end

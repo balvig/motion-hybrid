@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   class Request
 
     def initialize(nsurlrequest, type)

@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   module Bridgeable
 
     def on_appear

@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   module Presentable
 
     def presented_from?(url)

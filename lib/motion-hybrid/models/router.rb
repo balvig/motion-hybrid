@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   class Router
 
     def initialize(screen)

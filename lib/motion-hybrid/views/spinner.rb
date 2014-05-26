@@ -1,4 +1,4 @@
-module MotionRails
+module MotionHybrid
   class Spinner
 
     def initialize(view)
