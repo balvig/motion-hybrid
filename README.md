@@ -8,7 +8,7 @@ motion-hybrid takes your existing web app and views and wraps them in a snappy n
 Add to your rubymotion project's Gemfile:
 
 ```ruby
-  gem 'motion-hybrid'
+  gem 'motion-hybrid', github: 'balvig/motion-hybrid'
 ```
 
 Run bundle and install required cocoapods:
@@ -117,7 +117,6 @@ Sometimes you will want to trigger native iOS functionality from the web views, 
 
 ```ruby
 class BaseScreen < MotionHybrid::Screen
-
   # pops up in-app email composer when clicking mailto: links
   route /^mailto:/ do |request|
     BW::Mail.compose(to: 'bob@example.com', subject: 'In app emailing', message: 'Hi!', animated: true)
@@ -127,7 +126,6 @@ class BaseScreen < MotionHybrid::Screen
   route '/setup' do
     app_delegate.register_for_push_notifications :badge, :sound, :alert
   end
-  
 end
 ```
 
