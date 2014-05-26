@@ -109,7 +109,25 @@ All markup is contained within a div with id `motion-hybrid-bridge`
 
 ### Navbar items
 
+TBA
 
 ## Custom routes
 
-TODO: Write usage instructions here
+Sometimes you will want to trigger native iOS functionality from the web views, this is done by intercepting URLs that you can intercept and handle using the routing api, so you can do things like:
+
+```ruby
+class BaseScreen < MotionHybrid::Screen
+
+  # pops up in-app email composer when clicking mailto: links
+  route /^mailto:/ do |request|
+    BW::Mail.compose(to: 'bob@example.com', subject: 'In app emailing', message: 'Hi!', animated: true)
+  end
+  
+  # ask for push nofitication permisions when user hits '/setup' url
+  route '/setup' do
+    app_delegate.register_for_push_notifications :badge, :sound, :alert
+  end
+  
+end
+```
+
