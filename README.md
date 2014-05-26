@@ -20,7 +20,7 @@ $ rake pod:install
 
 ## Basic Usage
 
-Create a screen that inherits from `MotionHybrid::Screen` and set the base url of your web app:
+Create a screen class that inherits from `MotionHybrid::Screen` and set the base url of your web app:
 
 ```ruby
 # app/screens/base_screen.rb
@@ -29,7 +29,7 @@ class BaseScreen < MotionHybrid::Screen
 end
 ```
 
-Create one or more screens and set their paths:
+Instantiate one or more screens and set their paths:
 
 ```ruby
 # app/app_delegate.rb
