@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = MotionHybrid::VERSION
   spec.authors       = ["Jens Balvig"]
   spec.email         = ["jens@balvig.com"]
-  spec.summary       = %q{Native iOS framework for making hybrid apps}
-  spec.description   = %q{Native iOS framework for making hybrid apps}
+  spec.summary       = %q{RubyMotion framework for easily making hybrid webview-centric iOS apps}
+  spec.description   = %q{RubyMotion framework for easily making hybrid webview-centric iOS apps}
   spec.homepage      = "https://github.com/balvig/motion-hybrid"
   spec.license       = "MIT"
 

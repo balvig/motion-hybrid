@@ -18,3 +18,4 @@ nbproject
 .idea
 vendor/Pods
 vendor/**/build-*
+Gemfile.lock
