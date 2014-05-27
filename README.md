@@ -113,12 +113,12 @@ TBA
 
 ## Custom routes
 
-Sometimes you will want to trigger native iOS functionality from the web views, this is done by intercepting URLs that you can intercept and handle using the routing api, so you can do things like:
+Sometimes you will want to trigger native iOS functionality from the web views, this is done by intercepting URLs that you can handle using the routing api, so you can do things like:
 
 ```ruby
 class BaseScreen < MotionHybrid::Screen
   # pops up in-app email composer when clicking mailto: links
-  route /^mailto:/ do |request|
+  route /^mailto:/ do
     BW::Mail.compose(to: 'bob@example.com', subject: 'In app emailing', message: 'Hi!', animated: true)
   end
   
