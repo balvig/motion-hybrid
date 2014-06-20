@@ -37,7 +37,7 @@ module MotionHybrid
     end
 
     def set_tab_bar_options
-      set_tab_bar_item title: @tab_bar[:title], icon: Icon.new(@tab_bar[:icon], 25) if @tab_bar
+      set_tab_bar_item title: @tab_bar[:title], icon: Icon.new(@tab_bar[:icon], 24) if @tab_bar
     end
 
     def remove_back_button_label
