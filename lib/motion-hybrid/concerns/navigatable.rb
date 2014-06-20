@@ -89,7 +89,9 @@ module MotionHybrid
       view_options = options.slice!(:hide_tab_bar)
       options[:modal] = view_options[:modal]
       view_options.reverse_merge!(url: url, modal: modal?, transition_style: transition_style)
-      open self.class.new(view_options), options
+      new_view = self.class.new(view_options)
+      open(new_view, options)
+      new_view
     end
 
     def load_initial_url
