@@ -5,14 +5,15 @@ module MotionHybrid
     def initialize(title, subtitle = nil)
       options = {
         'kCRToastTextKey' => title,
-        'kCRToastFontKey' => UIFont.boldSystemFontOfSize(15),
+        'kCRToastFontKey' => UIFont.systemFontOfSize(18),
         'kCRToastTextColorKey' => TEXT_COLOR,
         'kCRToastBackgroundColorKey' => BACKGROUND_COLOR,
         'kCRToastSubtitleFontKey' => UIFont.boldSystemFontOfSize(15),
         'kCRToastSubtitleTextColorKey' => TEXT_COLOR,
         'kCRToastTextAlignmentKey' => NSTextAlignmentLeft,
         'kCRToastSubtitleTextAlignmentKey' => NSTextAlignmentLeft,
-        'kCRToastNotificationTypeKey' => CRToastTypeNavigationBar
+        'kCRToastNotificationTypeKey' => CRToastTypeNavigationBar,
+        'kCRToastImageKey' => Icon.new(:check, 20, color: TEXT_COLOR)
       }
 
       options.merge!('kCRToastFontKey' => UIFont.systemFontOfSize(13), 'kCRToastSubtitleTextKey' => subtitle, 'kCRToastTimeIntervalKey' => 3) if subtitle.present?
