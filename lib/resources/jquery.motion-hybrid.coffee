@@ -14,7 +14,7 @@ class window.MotionHybrid
     JSON.stringify params
 
   parseButton = (button) ->
-    { link: button.attr('href'), options: button.children().map(-> this.innerText).get() } if button.length
+    { link: button.attr('href'), options: button.children().map(-> this.innerText).get(), icon: button.data('icon') } if button.length
 
   parseFlash = (flash) ->
     { title: flash.find('h3').text() || flash.text().trim(), subtitle: flash.find('p').text() } if flash.length

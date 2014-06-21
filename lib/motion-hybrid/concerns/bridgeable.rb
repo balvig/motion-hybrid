@@ -42,7 +42,7 @@ module MotionHybrid
 
     def set_buttons
       set_nav_bar_left_button nil, system_item: UIBarButtonSystemItemStop, action: 'close_screen' if bridge.nav_bar_left_button.present?
-      set_nav_bar_right_button Icon.new(:cog, 18), action: 'on_nav_bar_right_button_click' if bridge.nav_bar_right_button.present?
+      set_nav_bar_right_button Icon.new(bridge.nav_bar_right_button.icon, 18), action: 'on_nav_bar_right_button_click' if bridge.nav_bar_right_button.present?
     end
 
     def on_nav_bar_right_button_click
