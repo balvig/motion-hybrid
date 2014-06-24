@@ -4,6 +4,12 @@ module MotionHybrid
 
     included do
 
+      # Trigger dom-loaded events
+      route 'motionhybrid://ready' do
+        dom_loaded
+        true
+      end
+
       # All clicked GET-links are pushed
       route /.*/ do |request|
         push(request.url) if request.http_method == 'GET' && request.type == UIWebViewNavigationTypeLinkClicked
@@ -24,9 +30,14 @@ module MotionHybrid
         push(request.url_without_anchor, modal: true, nav_bar: true)
       end
 
+      # Close window
+      route '#close' do
+        close
+      end
+
       # Modals are closed if they encounter the url from which they were spawned from
       route /.*/ do |request|
-        close_screen if presented_from?(request.url)
+        close if presented_from?(request.url)
       end
 
     end
