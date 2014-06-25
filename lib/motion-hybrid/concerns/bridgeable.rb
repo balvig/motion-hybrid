@@ -41,18 +41,28 @@ module MotionHybrid
     end
 
     def set_buttons
-      set_nav_bar_left_button nil, system_item: UIBarButtonSystemItemStop, action: 'close_screen' if bridge.nav_bar_left_button.present?
+      #TODO : fix this madness
+      set_nav_bar_left_button bridge.nav_bar_left_button.icon ? Icon.new(bridge.nav_bar_left_button.icon, 19) : nil, system_item: bridge.nav_bar_left_button.icon ? nil : UIBarButtonSystemItemStop, action: 'on_nav_bar_left_button_click' if bridge.nav_bar_left_button.present?
       set_nav_bar_right_button Icon.new(bridge.nav_bar_right_button.icon, 18), action: 'on_nav_bar_right_button_click' if bridge.nav_bar_right_button.present?
     end
 
-    def on_nav_bar_right_button_click
-      if bridge.nav_bar_right_button.link
-        bridge.click(:nav_bar_right_button)
+    def on_nav_bar_button_click(side)
+      button = "nav_bar_#{side}_button"
+      if bridge.send(button).link
+        bridge.click(button)
       else
-        UIActionSheet.alert nil, buttons: bridge.nav_bar_right_button.options do |pressed, index|
-          bridge.click_child(:nav_bar_right_button, index)
+        UIActionSheet.alert 'Post a photo of the finished dish!', buttons: bridge.send(button).options do |pressed, index|
+          bridge.click_child(button, index)
         end
       end
+    end
+
+    def on_nav_bar_left_button_click
+      on_nav_bar_button_click(:left)
+    end
+
+    def on_nav_bar_right_button_click
+      on_nav_bar_button_click(:right)
     end
 
     def set_refresher

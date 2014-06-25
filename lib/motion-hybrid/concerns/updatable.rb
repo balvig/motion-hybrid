@@ -12,9 +12,10 @@ module MotionHybrid
 
     # Inefficient, but will do for now
     def dependents
-      dependents = all_views - [self]
-      dependents = dependents | parent_screens
-      dependents
+      #dependents = all_views - [self]
+      #dependents = dependents | parent_screens
+      #dependents
+      parent_screens
     end
 
     def all_views

@@ -57,9 +57,13 @@ module MotionHybrid
     end
 
     def reset!
+      return_to_root
+      load_initial_url
+    end
+
+    def return_to_root
       dismissViewControllerAnimated(false, completion: nil)
       navigation_controller.popToRootViewControllerAnimated(false)
-      load_initial_url
     end
 
     def on_request(nsurlrequest, type)
