@@ -4,7 +4,6 @@ module MotionHybrid
     private
 
     def reload_dependents
-      PM.logger.debug "reloading!"
       @needs_reload = false
       dependents.map(&:stop)
       dependents.map(&:reload)

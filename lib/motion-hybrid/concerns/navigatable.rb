@@ -41,17 +41,18 @@ module MotionHybrid
       @url = current_url
       load_bridge
       reload_dependents if needs_reload?
-      end_transitions
+      stop_transitions
     end
 
     def load_failed(error)
       unless [102, -999].include?(error.code) #http://stackoverflow.com/questions/19487330/failed-to-load-webpage-error-nsurlerrordomain-error-999
-        end_transitions
+        stop_transitions
         on_error(error) if respond_to?(:on_error)
         PM.logger.warn error
       end
     end
 
+    # probably not needed
     def close_screen
       reload_dependents if needs_reload?
       super
@@ -118,7 +119,6 @@ module MotionHybrid
     end
 
     module ClassMethods
-
       def url_for(path)
         "#{root_url}#{path}"
       end
@@ -138,6 +138,5 @@ module MotionHybrid
         end
       end
     end
-
   end
 end

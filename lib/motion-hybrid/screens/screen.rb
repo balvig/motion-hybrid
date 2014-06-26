@@ -5,6 +5,7 @@ module MotionHybrid
     include Navigatable
     include BasicRoutes
     include Presentable
+    include Releasable
     include Styleable
     include Syncable
     include Transitionable

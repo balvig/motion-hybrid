@@ -16,7 +16,7 @@ module MotionHybrid
       webview.scrollView.fade_out(duration: 0.2, opacity: 0.5)
     end
 
-    def end_transitions
+    def stop_transitions
       @loading = false
       refresher.endRefreshing if refresher
       spinner.hide
