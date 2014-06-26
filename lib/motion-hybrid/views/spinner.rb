@@ -24,7 +24,7 @@ module MotionHybrid
     end
 
     def spin_animation
-      spin_animation = RTSpinKitView.alloc.initWithStyle(RTSpinKitViewStyleBounce, color: '#323667'.to_color) # TODO: Style from CSS
+      spin_animation = RTSpinKitView.alloc.initWithStyle(RTSpinKitViewStyleWanderingCubes, color: '#323667'.to_color) # TODO: Style from CSS
       spin_animation.startAnimating
       spin_animation
     end

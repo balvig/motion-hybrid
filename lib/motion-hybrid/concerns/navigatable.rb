@@ -47,7 +47,8 @@ module MotionHybrid
     def load_failed(error)
       unless [102, -999].include?(error.code) #http://stackoverflow.com/questions/19487330/failed-to-load-webpage-error-nsurlerrordomain-error-999
         end_transitions
-        show_error(error)
+        on_error(error) if respond_to?(:on_error)
+        PM.logger.warn error
       end
     end
 
@@ -63,7 +64,7 @@ module MotionHybrid
 
     def return_to_root
       dismissViewControllerAnimated(false, completion: nil)
-      navigation_controller.popToRootViewControllerAnimated(false)
+      close_nav_screen(animated: false) if nav_bar?
     end
 
     def on_request(nsurlrequest, type)
@@ -73,6 +74,13 @@ module MotionHybrid
     def navigate(new_path)
       return if path == new_path
       process_request Request.new(self.class.request_for(new_path), UIWebViewNavigationTypeLinkClicked)
+    end
+
+    # overrides promotion method to set more sensible timeout default
+    def open_url(url)
+      url = url.is_a?(NSURL) ? url : NSURL.URLWithString(url)
+      request = NSURLRequest.requestWithURL(url, cachePolicy: NSURLRequestUseProtocolCachePolicy, timeoutInterval: 15)
+      web.loadRequest request
     end
 
     private
@@ -107,13 +115,6 @@ module MotionHybrid
 
     def router
       @router ||= Router.new(self)
-    end
-
-    def show_error(error)
-      PM.logger.warn error
-      BW::UIAlertView.default(title: 'Could not connect', message: error.localizedDescription, buttons: ['Cancel', 'Try Again']) do |alert|
-        reset! if alert.clicked_button.index > 0
-      end.show
     end
 
     module ClassMethods
