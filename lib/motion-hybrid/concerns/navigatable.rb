@@ -80,7 +80,7 @@ module MotionHybrid
     # overrides promotion method to set more sensible timeout default
     def open_url(url)
       url = url.is_a?(NSURL) ? url : NSURL.URLWithString(url)
-      request = NSURLRequest.requestWithURL(url, cachePolicy: NSURLRequestUseProtocolCachePolicy, timeoutInterval: 15)
+      request = NSURLRequest.requestWithURL(url, cachePolicy: NSURLRequestUseProtocolCachePolicy, timeoutInterval: 20)
       web.loadRequest request
     end
 
