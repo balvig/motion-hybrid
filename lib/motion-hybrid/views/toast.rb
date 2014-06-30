@@ -8,7 +8,7 @@ module MotionHybrid
         'kCRToastFontKey' => UIFont.systemFontOfSize(18),
         'kCRToastTextColorKey' => TEXT_COLOR,
         'kCRToastBackgroundColorKey' => BACKGROUND_COLOR,
-        'kCRToastSubtitleFontKey' => UIFont.boldSystemFontOfSize(15),
+        'kCRToastSubtitleFontKey' => UIFont.systemFontOfSize(13),
         'kCRToastSubtitleTextColorKey' => TEXT_COLOR,
         'kCRToastTextAlignmentKey' => NSTextAlignmentLeft,
         'kCRToastSubtitleTextAlignmentKey' => NSTextAlignmentLeft,
@@ -16,7 +16,7 @@ module MotionHybrid
         'kCRToastImageKey' => Icon.new(:check, 20, color: TEXT_COLOR)
       }
 
-      options.merge!('kCRToastFontKey' => UIFont.systemFontOfSize(13), 'kCRToastSubtitleTextKey' => subtitle, 'kCRToastTimeIntervalKey' => 3) if subtitle.present?
+      options.merge!('kCRToastFontKey' => UIFont.boldSystemFontOfSize(17), 'kCRToastSubtitleTextKey' => subtitle, 'kCRToastTimeIntervalKey' => 5) if subtitle.present?
 
       CRToastManager.showNotificationWithOptions options, completionBlock: nil
     end
