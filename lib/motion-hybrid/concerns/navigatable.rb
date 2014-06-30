@@ -64,7 +64,6 @@ module MotionHybrid
     end
 
     def return_to_root
-      dismissViewControllerAnimated(false, completion: nil)
       close_nav_screen(animated: false) if nav_bar?
     end
 
