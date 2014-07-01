@@ -35,7 +35,7 @@ Instantiate a screen and set the initial path:
 # app/app_delegate.rb
 class AppDelegate < PM::Delegate
   def on_load(app, options)
-    open BaseScreen.new(nav_bar: true, path: '/balvig'
+    open BaseScreen.new(nav_bar: true, path: '/balvig')
   end
 end
 ```
