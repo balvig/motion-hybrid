@@ -41,21 +41,37 @@ module MotionHybrid
     end
 
     def set_buttons
-      #TODO : fix this madness
-      set_nav_bar_left_button bridge.nav_bar_left_button.icon ? Icon.new(bridge.nav_bar_left_button.icon, 19) : nil, system_item: bridge.nav_bar_left_button.icon ? nil : UIBarButtonSystemItemStop, action: 'on_nav_bar_left_button_click' if bridge.nav_bar_left_button.present?
-      set_nav_bar_right_button Icon.new(bridge.nav_bar_right_button.icon, 18), action: 'on_nav_bar_right_button_click' if bridge.nav_bar_right_button.present?
+      set_button :left, bridge.nav_bar_buttons.left
+      set_button :right, bridge.nav_bar_buttons.right
+    end
+
+    def set_button(side, button)
+      return unless button
+      icon = button.icon ? Icon.new(button.icon, 20) : nil
+      send "set_nav_bar_#{side}_button", icon, action: "on_nav_bar_#{side}_button_click"
     end
 
     def on_nav_bar_button_click(side)
-      button = "nav_bar_#{side}_button"
-      if bridge.send(button).link
-        bridge.click(button)
-      else
-        UIActionSheet.alert 'Post a photo of the finished dish!', buttons: bridge.send(button).options do |pressed, index|
-          bridge.click_child(button, index)
+      button = bridge.nav_bar_buttons.send(side)
+      if button.options.any?
+        UIActionSheet.alert nil, buttons: button.options do |pressed, index|
+          index = remap_index(index, button.options)
+          bridge.click_child(button.id, index)
         end
+      else
+        bridge.click(button.id)
       end
     end
+
+    #  iOS button order and actual order of buttons on screen are not the same
+    def remap_index(index, options)
+      if index == options.length - 1
+        0
+      else
+        index + 1
+      end
+    end
+
 
     def on_nav_bar_left_button_click
       on_nav_bar_button_click(:left)

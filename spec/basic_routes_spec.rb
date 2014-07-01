@@ -61,20 +61,6 @@ describe 'MotionHybrid::BasicRoutes' do
     end
   end
 
-  #it "#hide_tab_bar link" do
-    #stub_request(:get, "http://github.com/").to_return(body: '<a href="/page_2#hide_tab_bar" id="link">To page 2</a>')
-    #stub_request(:get, "http://github.com/page_2#hide_tab_bar").to_return(body: 'This is page 2')
-
-    #wait 0.6 do
-      #@screen.evaluate('document.getElementById("link").click();')
-      #wait 0.6 do
-        #@screen.navigationController.viewControllers.count.should == 2
-        #@screen.navigationController.viewControllers.last.html.include?('This is page 2').should == true
-      #end
-    #end
-  #end
-  #
-  #
   def current_view
     top_view = @screen.navigationController.topViewController
     top_view.presentedViewController.nil? ? top_view : top_view.presentedViewController.viewControllers.last

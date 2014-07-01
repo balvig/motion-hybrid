@@ -52,12 +52,6 @@ module MotionHybrid
       end
     end
 
-    # probably not needed
-    def close_screen
-      reload_dependents if needs_reload?
-      super
-    end
-
     def reset!
       return_to_root
       load_initial_url
@@ -76,7 +70,7 @@ module MotionHybrid
       process_request Request.new(self.class.request_for(new_path), UIWebViewNavigationTypeLinkClicked)
     end
 
-    # overrides promotion method to set more sensible timeout default
+    # overrides Promotion method to set more sensible timeout default
     def open_url(url)
       url = url.is_a?(NSURL) ? url : NSURL.URLWithString(url)
       request = NSURLRequest.requestWithURL(url, cachePolicy: NSURLRequestUseProtocolCachePolicy, timeoutInterval: 20)

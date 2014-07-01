@@ -6,7 +6,6 @@ require 'motion-support'
 require 'ProMotion'
 require 'sugarcube-classic'
 
-
 Motion::Require.all(Dir.glob(File.expand_path('../motion-hybrid/**/*.rb', __FILE__)))
 
 Motion::Project::App.setup do |app|

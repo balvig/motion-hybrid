@@ -29,17 +29,13 @@ class BaseScreen < MotionHybrid::Screen
 end
 ```
 
-Instantiate one or more screens and set their paths:
+Instantiate a screen and set the initial path:
 
 ```ruby
 # app/app_delegate.rb
 class AppDelegate < PM::Delegate
   def on_load(app, options)
-    BaseScreen.sync_sessions do
-      @screen_1 = BaseScreen.new(nav_bar: true, path: '/balvig', tab_bar: { title: 'Balvig', icon: :users })
-      @screen_2 = BaseScreen.new(nav_bar: true, path: '/rubymotion', tab-bar: { title: 'Rubymotion', icon: :gear })
-      open_tab_bar @screen_1, @screen_2
-    end
+    open BaseScreen.new(nav_bar: true, path: '/balvig'
   end
 end
 ```
@@ -121,10 +117,10 @@ class BaseScreen < MotionHybrid::Screen
   route /^mailto:/ do
     BW::Mail.compose(to: 'bob@example.com', subject: 'In app emailing', message: 'Hi!', animated: true)
   end
-  
+
   # ask for push nofitication permisions when user hits '/setup' url
   route '/setup' do
-    app_delegate.register_for_push_notifications :badge, :sound, :alert
+    App.delegate.register_for_push_notifications :badge, :sound, :alert
   end
 end
 ```
