@@ -1,12 +1,13 @@
 module MotionHybrid
   module Releasable
 
-    def view_will_disappear(animated)
+    def will_disappear
       @should_release = !nav_bar? || !navigationController.viewControllers.include?(self)
     end
 
-    def view_did_disappear(animated)
+    def on_disappear
       if @should_release
+        PM.logger.debug "Releasing #{self}"
         webview.removeFromSuperview
         webview.release
       end
