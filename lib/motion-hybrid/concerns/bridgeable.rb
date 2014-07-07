@@ -41,8 +41,12 @@ module MotionHybrid
     end
 
     def set_buttons
-      set_button :left, bridge.nav_bar_buttons.left
-      set_button :right, bridge.nav_bar_buttons.right
+      if bridge.nav_bar_buttons
+        set_button :left, bridge.nav_bar_buttons.left
+        set_button :right, bridge.nav_bar_buttons.right
+      else
+        PM.logger.debug 'No buttons found'
+      end
     end
 
     def set_button(side, button)
