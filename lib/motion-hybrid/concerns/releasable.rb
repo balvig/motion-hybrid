@@ -2,7 +2,7 @@ module MotionHybrid
   module Releasable
 
     def will_disappear
-      @should_release = !nav_bar? || !navigationController.viewControllers.include?(self)
+      @should_release = nav_bar? && !navigationController.viewControllers.include?(self)
     end
 
     def on_disappear

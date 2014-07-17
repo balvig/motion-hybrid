@@ -3,19 +3,12 @@ module MotionHybrid
 
     def on_appear
       super
-      if title_blank? && bridge.present?
-        set_titles
-      else
-        @transition_finished = true
-      end
+      @transition_finished = true
+      set_titles if bridge.present?
       refresher.endRefreshing if refresher #avoids stuck animation
     end
 
     private
-
-    def title_blank?
-      title.blank? && navigationItem.titleView.blank?
-    end
 
     def load_bridge
       self.bridge = Bridge.new(self)
@@ -29,7 +22,7 @@ module MotionHybrid
     end
 
     def transition_finished?
-      @transition_finished
+      !!@transition_finished
     end
 
     def set_titles
@@ -37,6 +30,7 @@ module MotionHybrid
         self.navigationItem.titleView = MultiLineHeader.new(bridge.title, bridge.subtitle)
       else
         self.title = bridge.title
+        self.navigationItem.titleView = nil
       end
     end
 
@@ -51,8 +45,8 @@ module MotionHybrid
 
     def set_button(side, button)
       return unless button
-      icon = button.icon ? Icon.new(button.icon, 20) : nil
-      send "set_nav_bar_#{side}_button", icon, action: "on_nav_bar_#{side}_button_click"
+      label = button.icon ? Icon.new(button.icon, 20) : button.label
+      send "set_nav_bar_#{side}_button", label, action: "on_nav_bar_#{side}_button_click"
     end
 
     def on_nav_bar_button_click(side)

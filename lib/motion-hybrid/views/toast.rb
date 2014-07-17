@@ -16,7 +16,7 @@ module MotionHybrid
         'kCRToastImageKey' => Icon.new(:check, 20, color: TEXT_COLOR)
       }
 
-      options.merge!('kCRToastFontKey' => UIFont.boldSystemFontOfSize(17), 'kCRToastSubtitleTextKey' => subtitle, 'kCRToastTimeIntervalKey' => 5) if subtitle.present?
+      options.merge!('kCRToastFontKey' => UIFont.boldSystemFontOfSize(16), 'kCRToastSubtitleTextKey' => subtitle, 'kCRToastTimeIntervalKey' => 5) if subtitle.present?
 
       CRToastManager.showNotificationWithOptions options, completionBlock: nil
     end
