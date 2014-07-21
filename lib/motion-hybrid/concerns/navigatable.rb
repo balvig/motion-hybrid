@@ -39,7 +39,7 @@ module MotionHybrid
 
     def load_finished
       @url = current_url
-      load_bridge
+      load_bridge unless external_page?
       reload_dependents if needs_reload?
       stop_transitions
     end
@@ -78,6 +78,10 @@ module MotionHybrid
     end
 
     private
+
+    def external_page?
+      !url.include?(self.class.root_url)
+    end
 
     def process_request(request)
       @needs_reload = true if request.http_method != 'GET'
