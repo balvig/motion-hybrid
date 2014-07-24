@@ -6,12 +6,16 @@ module MotionHybrid
     end
 
     def on_disappear
-      if @should_release
+      release_from_memory if @should_release
+    end
+
+    private
+
+      def release_from_memory
         PM.logger.debug "Releasing #{self}"
         webview.removeFromSuperview
         webview.release
       end
-    end
 
   end
 end

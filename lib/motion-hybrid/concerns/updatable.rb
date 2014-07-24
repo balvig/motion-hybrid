@@ -1,12 +1,17 @@
 module MotionHybrid
   module Updatable
 
+    def reload!
+      stop
+      stop_transitions
+      reload
+    end
+
     private
 
     def reload_dependents
       @needs_reload = false
-      dependents.map(&:stop)
-      dependents.map(&:reload)
+      dependents.map(&:reload!)
     end
 
     # Inefficient, but will do for now

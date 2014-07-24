@@ -34,6 +34,7 @@ module MotionHybrid
     end
 
     def load_started
+      @dom_loaded = false
       start_transitions
     end
 
@@ -41,7 +42,6 @@ module MotionHybrid
       @url = current_url
       load_bridge unless external_page?
       reload_dependents if needs_reload?
-      stop_transitions
     end
 
     def load_failed(error)
@@ -84,6 +84,7 @@ module MotionHybrid
     end
 
     def process_request(request)
+      return dom_loaded && false if request.url == 'motionhybrid://ready'
       @needs_reload = true if request.http_method != 'GET'
 
       if router.process(request)
@@ -95,10 +96,11 @@ module MotionHybrid
     end
 
     def push(url, options = {})
+      screen = options.delete(:screen) || self.class
       view_options = options.slice!(:hide_tab_bar)
       options[:modal] = view_options[:modal]
       view_options.reverse_merge!(url: url, modal: modal?, transition_style: transition_style)
-      new_view = self.class.new(view_options)
+      new_view = screen.new(view_options)
       open(new_view, options)
       new_view
     end

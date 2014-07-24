@@ -24,7 +24,10 @@ class window.MotionHybrid
     target = target.children() if childIndex
     target.get(childIndex || 0).click()
 
-if document.readyState == 'complete'
-  document.location.href = 'motionhybrid://ready'
-else
-  jQuery -> document.location.href = 'motionhybrid://ready'
+  @waitForJqueryAndDom: ->
+    if window.$
+      jQuery -> document.location.href = 'motionhybrid://ready'
+    else
+      setTimeout MotionHybrid.waitForJqueryAndDom, 100
+
+MotionHybrid.waitForJqueryAndDom()

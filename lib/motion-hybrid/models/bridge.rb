@@ -5,7 +5,7 @@ module MotionHybrid
 
     def initialize(screen)
       @screen = screen
-      @screen.evaluate(JS_LIB)
+      PM.logger.debug "#{@screen} loading bridge #{@screen.evaluate(JS_LIB)}"
     end
 
     def click(target)
@@ -23,7 +23,11 @@ module MotionHybrid
     end
 
     def bridge_json
-      js_api('getParams()').presence || '{}'
+      @bridge_json ||= begin
+        result = js_api('getParams()').presence || '{}'
+        PM.logger.debug "#{@screen} #{result}"
+        result
+      end
     end
 
     def method_missing(method)
