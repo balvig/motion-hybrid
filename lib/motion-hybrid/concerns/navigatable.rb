@@ -100,7 +100,7 @@ module MotionHybrid
       screen = options.delete(:screen) || self.class
       view_options = options.slice!(:hide_tab_bar)
       options[:modal] = view_options[:modal]
-      view_options.reverse_merge!(url: url, modal: modal?, transition_style: transition_style)
+      view_options.reverse_merge!(url: url, modal: modal?)
       new_view = screen.new(view_options)
       open(new_view, options)
       new_view
@@ -108,10 +108,6 @@ module MotionHybrid
 
     def load_initial_url
       self.path = self.class.path_for(@initial_url)
-    end
-
-    def transition_style
-      modal? ? UIModalTransitionStyleFlipHorizontal : nil
     end
 
     def router
