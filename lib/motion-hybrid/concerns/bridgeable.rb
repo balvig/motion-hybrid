@@ -3,7 +3,7 @@ module MotionHybrid
 
     def on_appear
       super
-      @transition_finished = true
+      @appeared = true
       set_titles if dom_loaded?
       refresher.endRefreshing if refresher #avoids stuck animation
     end
@@ -16,11 +16,10 @@ module MotionHybrid
 
     def dom_loaded
       PM.logger.debug "#{self} dom_loaded"
-      set_titles if transition_finished?
+      set_titles if appeared?
       set_buttons
       set_refresher
       render_flash
-      stop_transitions
       @dom_loaded = true
     end
 
@@ -28,12 +27,11 @@ module MotionHybrid
       !!@dom_loaded
     end
 
-    def transition_finished?
-      !!@transition_finished
+    def appeared?
+      !!@appeared
     end
 
     def set_titles
-      #PM.logger.debug "#{self}: setting titles"
       if bridge.subtitle.present?
         self.navigationItem.titleView = MultiLineHeader.new(bridge.title, bridge.subtitle)
       else

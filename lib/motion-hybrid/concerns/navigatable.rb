@@ -40,6 +40,7 @@ module MotionHybrid
 
     def load_finished
       @url = current_url
+      stop_transitions
       load_bridge unless external_page?
       reload_dependents if needs_reload?
     end

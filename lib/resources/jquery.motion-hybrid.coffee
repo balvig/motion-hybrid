@@ -25,9 +25,12 @@ class window.MotionHybrid
     target.get(childIndex || 0).click()
 
   @waitForJqueryAndDom: ->
+    #alert 'finding jquery'
     if window.$
+      #alert 'found'
       jQuery -> document.location.href = 'motionhybrid://ready'
     else
+      #alert 'waiting'
       setTimeout MotionHybrid.waitForJqueryAndDom, 100
 
 MotionHybrid.waitForJqueryAndDom()
