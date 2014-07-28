@@ -25,12 +25,9 @@ class window.MotionHybrid
     window.location = target.attr('href') # want to simulate real click but target.get(0).click() sometimes needs to be fired twice to work..?
 
   @waitForJqueryAndDom: ->
-    #alert 'finding jquery'
     if window.$
-      #alert 'found'
       jQuery -> document.location.href = 'motionhybrid://ready'
     else
-      #alert 'waiting'
       setTimeout MotionHybrid.waitForJqueryAndDom, 100
 
 MotionHybrid.waitForJqueryAndDom()
