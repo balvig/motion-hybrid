@@ -59,7 +59,7 @@ module MotionHybrid
     end
 
     def return_to_root
-      close_nav_screen(animated: false) if nav_bar?
+      close to_screen: :root, animated: false if nav_bar?
     end
 
     def on_request(nsurlrequest, type)
@@ -127,7 +127,10 @@ module MotionHybrid
 
       def path_for(url)
         return if url.blank?
-        NSURL.URLWithString(url).path
+        url = NSURL.URLWithString(url)
+        result = url.path
+        result += "##{url.fragment}" if url.fragment
+        result
       end
 
       def route(*patterns, &block)
