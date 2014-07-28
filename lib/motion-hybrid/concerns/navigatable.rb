@@ -67,6 +67,7 @@ module MotionHybrid
     end
 
     def navigate(new_path)
+      new_path = self.class.path_for(new_path)
       return if path == new_path
       process_request Request.new(self.class.request_for(new_path), UIWebViewNavigationTypeLinkClicked)
     end
@@ -89,9 +90,10 @@ module MotionHybrid
       @needs_reload = true if request.http_method != 'GET'
 
       if router.process(request)
+        PM.logger.info("#{self} #{request} <intercepted>")
         false
       else
-        PM.logger.info("#{self} #{request.http_method} #{request.url}")
+        PM.logger.info("#{self} #{request} <loaded>")
         true
       end
     end

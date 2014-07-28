@@ -21,8 +21,8 @@ class window.MotionHybrid
 
   @clicked: (target, childIndex) ->
     target = $("##{target}")
-    target = target.children() if childIndex
-    target.get(childIndex || 0).click()
+    target = target.children().eq(childIndex) if childIndex
+    window.location = target.attr('href') # want to simulate real click but target.get(0).click() sometimes needs to be fired twice to work..?
 
   @waitForJqueryAndDom: ->
     #alert 'finding jquery'

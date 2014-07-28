@@ -7,12 +7,12 @@ module MotionHybrid
       reload
     end
 
-    private
-
     def reload_dependents
       @needs_reload = false
       dependents.map(&:reload!)
     end
+
+    private
 
     # Inefficient, but will do for now
     def dependents
