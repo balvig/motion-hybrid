@@ -44,13 +44,13 @@ module MotionHybrid
       def kcr_options
         {
           KCRToastTextKey => title,
-          KCRToastSubtitleTextKey => options[:subtitle],
+          KCRToastSubtitleTextKey => options[:subtitle].presence,
           KCRToastTextColorKey => text_color,
           KCRToastBackgroundColorKey => background_color,
           KCRToastSubtitleTextColorKey => text_color,
           KCRToastImageKey => image,
-          KCRToastFontKey => options[:subtitle] ? UIFont.boldSystemFontOfSize(13) : UIFont.systemFontOfSize(18),
-          KCRToastTimeIntervalKey => options[:subtitle] ? 5 : nil,
+          KCRToastFontKey => options[:subtitle].present? ? UIFont.boldSystemFontOfSize(13) : UIFont.systemFontOfSize(18),
+          KCRToastTimeIntervalKey => options[:subtitle].present? ? 5 : nil,
           KCRToastInteractionRespondersKey => responders
         }
       end
