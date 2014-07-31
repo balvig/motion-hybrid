@@ -18,21 +18,21 @@ module MotionHybrid
 
     private
 
-    def bridge_hash
-      @bridge_hash ||= Dish BW::JSON.parse(bridge_json)
-    end
+      def bridge_hash
+        @bridge_hash ||= Dish BW::JSON.parse(bridge_json)
+      end
 
-    def bridge_json
-      js_api('getParams()').presence || '{}'
-    end
+      def bridge_json
+        js_api('getParams()').presence || '{}'
+      end
 
-    def method_missing(method)
-      bridge_hash.send(method)
-    end
+      def method_missing(method)
+        bridge_hash.send(method)
+      end
 
-    def js_api(command)
-      @screen.evaluate("MotionHybrid.#{command};").to_s
-    end
+      def js_api(command)
+        @screen.evaluate("MotionHybrid.#{command};").to_s
+      end
 
   end
 end

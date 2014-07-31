@@ -54,6 +54,7 @@ module MotionHybrid
     end
 
     def reset!
+      dismissModalViewControllerAnimated(false)
       return_to_root
       load_initial_url
     end
@@ -81,63 +82,61 @@ module MotionHybrid
 
     private
 
-    def external_page?
-      !url.include?(self.class.root_url)
-    end
-
-    def process_request(request)
-      return dom_loaded && false if request.url == 'motionhybrid://ready'
-      @needs_reload = true if request.http_method != 'GET'
-
-      if router.process(request)
-        PM.logger.info("#{self} #{request} <intercepted>")
-        false
-      else
-        PM.logger.info("#{self} #{request} <loaded>")
-        true
-      end
-    end
-
-    def push(url, options = {})
-      screen = options.delete(:screen) || self.class
-      view_options = options.slice!(:hide_tab_bar)
-      options[:modal] = view_options[:modal]
-      view_options.reverse_merge!(url: url, modal: modal?)
-      new_view = screen.new(view_options)
-      open(new_view, options)
-      new_view
-    end
-
-    def load_initial_url
-      self.path = self.class.path_for(@initial_url)
-    end
-
-    def router
-      @router ||= Router.new(self)
-    end
-
-    module ClassMethods
-      def url_for(path)
-        "#{root_url}#{path}"
+      def external_page?
+        !url.include?(self.class.root_url)
       end
 
-      def request_for(path)
-        NSURLRequest.requestWithURL NSURL.URLWithString(url_for(path))
-      end
+      def process_request(request)
+        return dom_loaded && false if request.url == 'motionhybrid://ready'
+        @needs_reload = true if request.http_method != 'GET'
 
-      def path_for(url)
-        return if url.blank?
-        url = NSURL.URLWithString(url)
-        result = url.path
-        result += "##{url.fragment}" if url.fragment
-        result
-      end
-
-      def route(*patterns, &block)
-        patterns.each do |pattern|
-          self.routes = [Route.new(pattern, &block)] + routes
+        if router.process(request)
+          PM.logger.info("#{self} #{request} <intercept>")
+          false
+        else
+          PM.logger.info("#{self} #{request} <load>")
+          true
         end
       end
-    end
+
+      def push(url, options = {})
+        screen = options.delete(:screen) || self.class
+        view_options = options.slice!(:hide_tab_bar)
+        options[:modal] = view_options[:modal]
+        view_options.reverse_merge!(url: url, modal: modal?)
+        new_view = screen.new(view_options)
+        open(new_view, options)
+        new_view
+      end
+
+      def load_initial_url
+        self.path = self.class.path_for(@initial_url)
+      end
+
+      def router
+        @router ||= Router.new(self)
+      end
+
+      module ClassMethods
+        def url_for(path)
+          "#{root_url}#{path}"
+        end
+
+        def request_for(path)
+          NSURLRequest.requestWithURL NSURL.URLWithString(url_for(path))
+        end
+
+        def path_for(url)
+          return if url.blank?
+          nsurl = NSURL.URLWithString(url)
+          url.sub("#{nsurl.scheme}://#{nsurl.host}", '')
+        end
+
+        def route(*patterns, &block)
+          patterns.each do |pattern|
+            self.routes = [Route.new(pattern, &block)] + routes
+          end
+        end
+      end
   end
 end
