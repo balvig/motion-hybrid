@@ -51,7 +51,7 @@ module MotionHybrid
 
       def set_button(side, button)
         return unless button
-        return if button.modal && !top_of_modal?
+        return if button.if && !send(button.if)
         label = button.icon ? Icon.new(button.icon, 20) : button.label
         send "set_nav_bar_#{side}_button", label, action: "on_nav_bar_#{side}_button_click"
       end
@@ -95,10 +95,6 @@ module MotionHybrid
 
       def render_flash
         Flash.new(bridge.flash.title, subtitle: bridge.flash.subtitle).show if bridge.flash
-      end
-
-      def top_of_modal?
-        modal? && presenter == parent_screen
       end
 
   end

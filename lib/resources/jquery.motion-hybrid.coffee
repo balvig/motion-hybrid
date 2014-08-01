@@ -17,7 +17,7 @@ class window.MotionHybrid
     { title: flash.find('h3').text() || flash.text().trim(), subtitle: flash.find('p').text() } if flash.length
 
   parseButton = (button) ->
-    { id: button.attr('id'), options: button.children().map(-> this.innerText).get(), icon: button.data('icon'), modal: button.data('modal'), label: button.text().trim() } if button.length
+    { id: button.attr('id'), options: button.children().map(-> this.innerText).get(), icon: button.data('icon'), if: button.data('if'), label: button.text().trim() } if button.length
 
   @clicked: (target, childIndex) ->
     target = $("##{target}")
