@@ -129,7 +129,9 @@ module MotionHybrid
         def path_for(url)
           return if url.blank?
           nsurl = NSURL.URLWithString(url)
-          url.sub("#{nsurl.scheme}://#{nsurl.host}", '')
+          url = url.sub("#{nsurl.scheme}://#{nsurl.host}", '')
+          url = url.sub(":#{nsurl.port}", '') if nsurl.port
+          url
         end
 
         def route(*patterns, &block)
