@@ -1,5 +1,5 @@
 PODS:
-  - CRToast (0.0.5)
+  - CRToast (0.0.7)
   - FontAwesomeKit (2.1.5):
     - FontAwesomeKit/Core
     - FontAwesomeKit/FontAwesome
@@ -19,15 +19,19 @@ PODS:
   - SpinKit (1.0.1)
 
 DEPENDENCIES:
-  - CRToast (< 0.0.6)
+  - CRToast (from `git@github.com:cruffenach/CRToast.git`)
   - FontAwesomeKit
   - MBProgressHUD
   - SpinKit
 
-SPEC CHECKSUMS:
-  CRToast: 5be332fb9f4bcfd3023b6f10324ed9738c35cb96
-  FontAwesomeKit: 7d935e100337d503bdaefde2ea16be740b81ed13
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  SpinKit: c7490233be81d8daf41da05dc463351423658aad
+EXTERNAL SOURCES:
+  CRToast:
+    :git: git@github.com:cruffenach/CRToast.git
 
-COCOAPODS: 0.29.0
+SPEC CHECKSUMS:
+  CRToast: da11d94a05b1351a87bb26cbf8f25e80ed2e7115
+  FontAwesomeKit: 2e37bec52edbb8f8044a487734ba63eb320a2665
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  SpinKit: 563a00196a87d789b16e3592265f0dfa9c3fb9db
+
+COCOAPODS: 0.33.1
