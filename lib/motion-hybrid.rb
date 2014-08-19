@@ -11,7 +11,7 @@ Motion::Require.all(Dir.glob(File.expand_path('../motion-hybrid/**/*.rb', __FILE
 Motion::Project::App.setup do |app|
   app.resources_dirs << File.join(File.dirname(__FILE__), 'resources')
   app.pods do
-    pod 'CRToast', '<0.0.6'
+    pod 'CRToast', git: 'git@github.com:cruffenach/CRToast.git'
     pod 'FontAwesomeKit'
     pod 'MBProgressHUD'
     pod 'SpinKit'

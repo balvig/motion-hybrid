@@ -25,5 +25,9 @@ module MotionHybrid
       @type
     end
 
+    def to_s
+      "#{http_method} #{url}"
+    end
+
   end
 end

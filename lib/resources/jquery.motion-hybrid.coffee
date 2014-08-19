@@ -17,14 +17,17 @@ class window.MotionHybrid
     { title: flash.find('h3').text() || flash.text().trim(), subtitle: flash.find('p').text() } if flash.length
 
   parseButton = (button) ->
-    { id: button.attr('id'), options: button.children().map(-> this.innerText).get(), icon: button.data('icon'), label: button.text().trim() } if button.length
+    { id: button.attr('id'), options: button.children().map(-> this.innerText).get(), icon: button.data('icon'), if: button.data('if'), label: button.text().trim() } if button.length
 
   @clicked: (target, childIndex) ->
     target = $("##{target}")
-    target = target.children() if childIndex
-    target.get(childIndex || 0).click()
+    target = target.children().eq(childIndex) if childIndex
+    window.location = target.attr('href') # want to simulate real click but target.get(0).click() sometimes needs to be fired twice to work..?
 
-if document.readyState == 'complete'
-  document.location.href = 'motionhybrid://ready'
-else
-  jQuery -> document.location.href = 'motionhybrid://ready'
+  @waitForJqueryAndDom: ->
+    if window.$
+      jQuery -> document.location.href = 'motionhybrid://ready'
+    else
+      setTimeout MotionHybrid.waitForJqueryAndDom, 100
+
+MotionHybrid.waitForJqueryAndDom()

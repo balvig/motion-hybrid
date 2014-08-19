@@ -4,12 +4,6 @@ module MotionHybrid
 
     included do
 
-      # Trigger dom-loaded events
-      route 'motionhybrid://ready' do
-        dom_loaded
-        true
-      end
-
       # All clicked GET-links are pushed
       route /.*/ do |request|
         push(request.url) if request.http_method == 'GET' && request.type == UIWebViewNavigationTypeLinkClicked
