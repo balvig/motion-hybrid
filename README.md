@@ -75,7 +75,25 @@ Links with anchor `#self` will open the new url within the current view without 
 
 ### Non-GET requests
 
-Any non-GET requests (form posts etc) will display the result within the current view and also automatically refresh all other views so that pages are up to date.
+Any non-GET requests (form posts etc) will display the result within the current view and also automatically refresh all parent views so that pages are up to date.
+
+## Custom routes
+
+Sometimes you will want to trigger native iOS functionality from the web views, this is done by intercepting URLs that you can handle using the routing api, so you can do things like:
+
+```ruby
+class BaseScreen < MotionHybrid::Screen
+  # pops up in-app email composer when clicking mailto: links
+  route /^mailto:/ do
+    BW::Mail.compose(to: 'bob@example.com', subject: 'In app emailing', message: 'Hi!', animated: true)
+  end
+
+  # ask for push nofitication permisions when user hits '/setup' url
+  route '/setup' do
+    App.delegate.register_for_push_notifications :badge, :sound, :alert
+  end
+end
+```
 
 ## The Bridge
 
@@ -106,22 +124,3 @@ All markup is contained within a div with id `motion-hybrid-bridge`
 ### Navbar items
 
 TBA
-
-## Custom routes
-
-Sometimes you will want to trigger native iOS functionality from the web views, this is done by intercepting URLs that you can handle using the routing api, so you can do things like:
-
-```ruby
-class BaseScreen < MotionHybrid::Screen
-  # pops up in-app email composer when clicking mailto: links
-  route /^mailto:/ do
-    BW::Mail.compose(to: 'bob@example.com', subject: 'In app emailing', message: 'Hi!', animated: true)
-  end
-
-  # ask for push nofitication permisions when user hits '/setup' url
-  route '/setup' do
-    App.delegate.register_for_push_notifications :badge, :sound, :alert
-  end
-end
-```
-
