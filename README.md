@@ -15,6 +15,7 @@ Run bundle and install required cocoapods:
 
 ```bash
 $ bundle
+$ pod setup
 $ rake pod:install
 ```
 
