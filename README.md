@@ -53,7 +53,7 @@ By default, all GET-links are pushed onto the navigation controller stack.
 <p>This is page 2</p>
 ```
 
-<img src='https://dl.dropboxusercontent.com/u/3032793/screenshots/get.gif' width='200px' />
+<img src='docs/get.gif' width='200px' />
 
 ### Modals
 
@@ -68,7 +68,7 @@ Links _within_ a modal linking to the url of the page that created it will autom
 <a href='index.html'>This will close the modal</a>
 ```
 
-<img src='https://dl.dropboxusercontent.com/u/3032793/screenshots/modal.gif' width='200px' />
+<img src='docs/modal.gif' width='200px' />
 
 ### Inline
 
