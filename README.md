@@ -80,7 +80,8 @@ Any non-GET requests (form posts etc) will display the result within the current
 
 ## Custom routes
 
-Sometimes you will want to trigger native iOS functionality from the web views, this is done by intercepting URLs that you can handle using the routing api, so you can do things like:
+Sometimes you will want to trigger native iOS functionality from the web views. 
+This is done by intercepting URLs that you can handle using the routing api, allowing you to do things like:
 
 ```ruby
 class BaseScreen < MotionHybrid::Screen
@@ -98,11 +99,11 @@ end
 
 ## The Bridge
 
-The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to control pars of the native app.
+The bridge is a small javascript connection between the web app and native app that allows you to use HTML in your web page to control parts of the native app.
 
-All markup is contained within a div with id `motion-hybrid-bridge`
+All markup is contained within a div with the id `motion-hybrid-bridge`:
 
-### Title/subtitles
+### Set title/subtitles
 
 ```html
 <div id='motion-hybrid-bridge'>
@@ -111,7 +112,7 @@ All markup is contained within a div with id `motion-hybrid-bridge`
 </div>
 ```
 
-### Alerts
+### Display alerts
 
 ```html
 <div id='motion-hybrid-bridge'>
